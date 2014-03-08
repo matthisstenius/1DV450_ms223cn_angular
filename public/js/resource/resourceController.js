@@ -5,7 +5,7 @@
 var module = angular.module('ToerhApp.controllers', []);
 
 module.controller('ResourceController', ['$scope', 'ResourceService', function($scope, ResourceService) {
-	loadResources('http://localhost:3000/api/v1/resources.json');
+	loadResources('http://toerh.matthis.se/api/v1/resources.json');
 
 	$scope.next = function() {
 		loadResources($scope.nextUrl);
@@ -17,11 +17,17 @@ module.controller('ResourceController', ['$scope', 'ResourceService', function($
 		var resources = ResourceService.all(url);
 
 		resources.success(function(resources) {
-			angular.forEach(resources.items, function(resource, value) {
-				$scope.resources.push(resource);
-			});
+			if (resources.items) {
+				angular.forEach(resources.items, function(resource, value) {
+					$scope.resources.push(resource);
+				});
 
-			$scope.nextUrl = resources.pagination.next_url;
+				$scope.nextUrl = resources.pagination.next_url;
+			}
+
+			else {
+				$scope.message = "No resources found";
+			}
 		});
 
 		resources.error(function(err) {
