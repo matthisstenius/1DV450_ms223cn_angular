@@ -4,8 +4,8 @@
 
 var module = angular.module('ToerhApp.controllers', []);
 
-module.controller('ResourceController', ['$scope', 'ResourceService', function($scope, ResourceService) {
-	loadResources('http://toerh.matthis.se/api/v1/resources.json');
+module.controller('ResourceController', function($scope, ResourceService) {
+	loadResources('http://toerh.dev/api/v1/resources.json');
 
 	$scope.next = function() {
 		loadResources($scope.nextUrl);
@@ -34,5 +34,5 @@ module.controller('ResourceController', ['$scope', 'ResourceService', function($
 			console.log(err);
 		});
 	}
-}]);
+});
  

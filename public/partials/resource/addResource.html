@@ -1,0 +1,47 @@
+<form>
+	<div class="row">
+		<div class="large-6 columns">
+			<label>Name
+				<input type="text" data-ng-model="resource.name">
+			</label>
+		</div>
+
+		<div class="large-6 columns">
+			<label>Description
+				<textarea data-ng-model="resource.description"></textarea>
+			</label>
+		</div>
+
+		<div class="large-6 columns">
+			<label>URL
+				<input type="text" data-ng-model="resource.url" placeholder="e.g http://www.example.com">
+			</label>
+		</div>
+
+		<div class="large-6 columns">
+			<label>Tags
+				<input type="text" data-ng-model="resource.tags" placeholder="e.g tag1, tag2, tag3">
+			</label>
+		</div>
+		
+		<div class="large-6 columns">
+			<label>Licence
+				<select data-ng-model="resource.licence_id">
+					<option value="">-- Choose a licence --</option>
+					<option data-ng-repeat="licence in licences" value="{{licence.data.id}}">{{licence.data.licence_type}}</option>
+				</select>
+			</label>
+		</div>
+
+		<div class="large-6 columns">
+			<label>Resourcetype
+				<select data-ng-model="resource.resource_type_id">
+					<option value="">-- Choose a resourcetype --</option>
+					<option data-ng-repeat="resourceType in resourceTypes" 
+					value="{{resourceType.data.id}}">{{resourceType.data.resource_type}}</option>
+				</select>
+			</label>
+		</div>
+		<button class="button" data-ng-click="create()">Create Resource</button>
+	</div>
+</form>

@@ -4,6 +4,7 @@
 // Declare app level module which depends on filters, and services
 angular.module('ToerhApp', [
   'ngRoute',
+  'ngCookies',
   'ToerhApp.filters',
   'ToerhApp.services',
   'ToerhApp.directives',
@@ -11,17 +12,17 @@ angular.module('ToerhApp', [
 ]).
 config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
   $routeProvider.when('/', {
-    templateUrl: 'partials/resources.html', 
+    templateUrl: 'partials/resource/resources.html', 
     controller: 'ResourceController'
   });
 
-  $routeProvider.when('/view2', {
-    templateUrl: 'partials/partial2.html',
-    controller: 'MyCtrl2'
+  $routeProvider.when('/login', {
+    templateUrl: '/partials/auth/login.html',
+    controller: 'AuthController'
   });
 
   $routeProvider.when('/resources/add', {
-    templateUrl: '/partials/addResource.html',
+    templateUrl: '/partials/resource/addResource.html',
     controller: 'CreateController'
   });  
 
@@ -31,7 +32,13 @@ config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeP
 
   $locationProvider.html5Mode(false).hashPrefix('');
 
-  $httpProvider.defaults.useXDomain = true;
-  $httpProvider.defaults.headers.common.Authorization = "9b11b4d24db5afefc257";
-  delete $httpProvider.defaults.headers.common['X-Requested-With'];
-}]);
+  $httpProvider.defaults.headers.common['X-Api-Token'] = "bf7a73e0260fb44f8f1e";
+}]).
+run(function(SessionService, ProtectedRoutes, $rootScope, $location) {
+  $rootScope.$on('$locationChangeStart', function(event, next, current) {
+    //console.log(SessionService.isAuthenticated());
+    if (ProtectedRoutes.indexOf($location.path()) !== -1 && !SessionService.isAuthenticated()) {
+      $location.url('/login');
+    }
+  });
+});

@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="bower_components/foundation/css/foundation.css"/>
     <link rel="stylesheet" href="css/main.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <base href="/">
 </head>
 <body>
     <nav class="top-bar" data-top-bar data-option="is_hover: false">
@@ -17,8 +16,12 @@
         </ul>
 
         <section class="top-bar-section">
-            <ul class="right">
-                <li><a href="" data-ng-href="#resources/add">Add Resource</a></li>
+            <ul class="right" data-ng-controller="AuthController">
+                <li data-ng-show="isLoggedIn()"><a href="" data-ng-href="#profile">Profile</a></li>
+                <li><a href="" data-ng-href="#">Resources</a></li>
+                <li data-ng-show="isLoggedIn()"><a href="" data-ng-href="#resources/add">Add Resource</a></li>
+                <li data-ng-hide="isLoggedIn()"><a href="" data-ng-href="#login">Login</a></li>
+                <li data-ng-show="isLoggedIn()"><a href="" data-ng-click="logout()">Logout</a></li>
             </ul>
         </section>
     </nav>
@@ -29,10 +32,17 @@
     -->
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular/angular-route.js"></script>
+    <script src="lib/angular/angular-cookies.js"></script>
     <script src="js/app.js"></script>
-    <script src="js/resource/resourceService.js"></script>
+    <script src="js/routeConfig.js"></script>
     <script src="js/resource/resourceController.js"></script>
+    <script src="js/resource/resourceService.js"></script>
     <script src="js/resource/createController.js"></script>
+    <script src="js/auth/authController.js"></script>
+    <script src="js/auth/authService.js"></script>
+    <script src="js/auth/sessionService.js"></script>
+    <script src="js/licence/licenceService.js"></script>
+    <script src="js/resource_type/resourceTypeService.js"></script>
     <script src="js/filters.js"></script>
     <script src="js/directives.js"></script>
 </body>

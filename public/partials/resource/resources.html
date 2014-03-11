@@ -1,0 +1,28 @@
+<div class="row" data-ng-init="search = {}">
+	<div class="large-4 columns">
+		<select data-ng-change="search = {}" data-ng-model="searchType" ng-init="searchType = 'data'">
+			<option value="data">Name</option>
+			<option value="licence">Licence</option>
+			<option value="resource_type">Resourcetype</option>
+			<option value="user">User</option>
+		</select>
+	</div>
+
+	<div class="large-8 columns">
+		<input type="text" data-ng-model="search[searchType]" placeholder="Start typing to filter resources by given type">
+	</div>
+
+	<div class="small-12 medium-6 large-4 columns" data-ng-repeat="resource in resources | filter:search:false">
+		<div class="resource">
+			<h2>{{resource.data.name}}</h2>
+			<p>Created: {{resource.data.created_at | date:'longDate'}}</p>
+			<p>{{resource.data.url}}</p>
+			<p>Created by: {{resource.user.firstname}} {{resource.user.surname}}</p>
+			<p>{{resource.licence.licence}}</p>
+			<p>{{resource.resource_type.resource_type}}</p>
+			<p>{{resource.data.description}}</p>
+		</div>
+	</div>
+
+	<a href="" ng-click="next()">Show More</a>
+</div>
