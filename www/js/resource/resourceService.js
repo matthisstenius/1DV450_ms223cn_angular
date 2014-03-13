@@ -22,7 +22,7 @@ module.factory('ResourceService', function($http, $window) {
 		},
 
 		search: function(search) {
-			return $http.get(baseUri + 'search/' + search.search + '.json');
+			return $http.get(baseUri + 'resources/?search=' + search.search + '.json');
 		}
 	};
 });
