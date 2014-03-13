@@ -5,6 +5,7 @@
 			<option value="licence">Licence</option>
 			<option value="resource_type">Resourcetype</option>
 			<option value="user">User</option>
+			<option value="tags">Tag</option>
 		</select>
 	</div>
 
@@ -21,6 +22,7 @@
 			<p>{{resource.licence.licence}}</p>
 			<p>{{resource.resource_type.resource_type}}</p>
 			<p>{{resource.data.description}}</p>
+			<p data-ng-repeat="tag in respurce.data.tags">{{tag.tag}}</p>
 		</div>
 	</div>
 
