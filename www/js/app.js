@@ -21,6 +21,11 @@ config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeP
     controller: 'AuthController'
   });
 
+  $routeProvider.when('/search/:search', {
+    templateUrl: 'partials/resource/resources.html',
+    controller: 'SearchController'
+  });
+
   $routeProvider.when('/resources/add', {
     templateUrl: '/partials/resource/addResource.html',
     controller: 'CreateController'
@@ -32,7 +37,7 @@ config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeP
 
   $locationProvider.html5Mode(false).hashPrefix('');
 
-  $httpProvider.defaults.headers.common['X-Api-Token'] = "bf7a73e0260fb44f8f1e";
+  $httpProvider.defaults.headers.common['X-Api-Token'] = "05697061ae7b838824f6";
 }]).
 run(function(SessionService, ProtectedRoutes, $rootScope, $location) {
   $rootScope.$on('$locationChangeStart', function(event, next, current) {

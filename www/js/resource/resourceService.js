@@ -19,6 +19,10 @@ module.factory('ResourceService', function($http, $window) {
 
 		store: function(resource) {
 			return $http.post(baseUri + 'users/' + $window.sessionStorage.userid + '/resources.json', resource);
+		},
+
+		search: function(search) {
+			return $http.get(baseUri + 'search/' + search.search + '.json');
 		}
 	};
 });

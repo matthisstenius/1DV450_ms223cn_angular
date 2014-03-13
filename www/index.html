@@ -23,6 +23,19 @@
                 <li data-ng-hide="isLoggedIn()"><a href="" data-ng-href="#login">Login</a></li>
                 <li data-ng-show="isLoggedIn()"><a href="" data-ng-click="logout()">Logout</a></li>
             </ul>
+            <ul class="left">
+                 <li class="has-form">
+                    <div class="row collapse">
+                        <div class="large-8 small-9 columns">
+                            <input data-ng-model="search" type="text" placeholder="Find Stuff">
+                        </div>
+                        
+                        <div class="large-4 small-3 columns">
+                            <a href="#" data-ng-href="#/search/{{search}}" class="alert button expand">Search</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </section>
     </nav>
     <div ng-view></div>
@@ -43,6 +56,7 @@
     <script src="js/auth/sessionService.js"></script>
     <script src="js/licence/licenceService.js"></script>
     <script src="js/resource_type/resourceTypeService.js"></script>
+    <script src="js/search/searchController.js"></script>
     <script src="js/filters.js"></script>
     <script src="js/directives.js"></script>
 </body>
