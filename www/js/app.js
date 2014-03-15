@@ -17,7 +17,7 @@ config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeP
   });
 
   $routeProvider.when('/login', {
-    templateUrl: '/partials/auth/login.html',
+    templateUrl: 'partials/auth/login.html',
     controller: 'AuthController'
   });
 
@@ -27,7 +27,7 @@ config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeP
   });
 
   $routeProvider.when('/resources/add', {
-    templateUrl: '/partials/resource/addResource.html',
+    templateUrl: 'partials/resource/addResource.html',
     controller: 'CreateController'
   });  
 
@@ -37,11 +37,10 @@ config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeP
 
   $locationProvider.html5Mode(false).hashPrefix('');
 
-  $httpProvider.defaults.headers.common['X-Api-Token'] = "05697061ae7b838824f6";
+  $httpProvider.defaults.headers.common['X-Api-Token'] = "a45b346b553c65797f43";
 }]).
 run(function(SessionService, ProtectedRoutes, $rootScope, $location) {
   $rootScope.$on('$locationChangeStart', function(event, next, current) {
-    //console.log(SessionService.isAuthenticated());
     if (ProtectedRoutes.indexOf($location.path()) !== -1 && !SessionService.isAuthenticated()) {
       $location.url('/login');
     }

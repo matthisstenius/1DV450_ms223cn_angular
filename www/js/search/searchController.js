@@ -4,7 +4,13 @@ module.controller('SearchController', function($scope, $routeParams, ResourceSer
 	var resources = ResourceService.search($routeParams);
 
 	resources.success(function(resources) {
+		if (resources.items) {
+			$scope.resources = resources.items;
+		}
 
+		else {
+			$scope.message = "No resources could be found with search: " + $routeParams.search;
+		}
 	});
 
 	resources.error(function(err) {

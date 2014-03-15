@@ -19,7 +19,9 @@ module.controller('AuthController', function($scope, $window, AuthService, $cook
 		});
 
 		auth.error(function(err) {
-			console.log(err);
+			if (err.status == 400) {
+				$scope.message = "Wrong username or password.";
+			}
 		});
 	};
 

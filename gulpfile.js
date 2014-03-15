@@ -15,10 +15,10 @@ var gulp = require('gulp'),
     server = lr();
 
 gulp.task('styles', function() {
-    return gulp.src('public/css/main.scss')
+    return gulp.src('www/css/main.scss')
         .pipe(sass({style: 'expanded'}))
         .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-        .pipe(gulp.dest('public/css/'))
+        .pipe(gulp.dest('www/css/'))
         .pipe(livereload(server))
         .pipe(notify({message: 'Styles task complete'}));
 });
@@ -34,6 +34,6 @@ gulp.task('watch', function() {
           return console.log(err)
         };
 
-        gulp.watch('public/css/*.scss', ['styles']);
+        gulp.watch('www/css/*.scss', ['styles']);
     });
 });

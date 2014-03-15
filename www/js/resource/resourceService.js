@@ -3,8 +3,8 @@
 var module = angular.module('ToerhApp.services');
 
 module.factory('ResourceService', function($http, $window) {
-	var baseUri = 'http://toerh.matthis.se/api/v1/';
-	//var baseUri = 'http://toerh.dev/api/v1/';
+	//var baseUri = 'http://toerh.matthis.se/api/v1/';
+	var baseUri = 'http://toerh.dev/api/v1/';
 
 	$http.defaults.headers.common.Authorization = $window.sessionStorage.token;
 
@@ -22,7 +22,7 @@ module.factory('ResourceService', function($http, $window) {
 		},
 
 		search: function(search) {
-			return $http.get(baseUri + 'resources/?search=' + search.search + '.json');
+			return $http.get(baseUri + 'resources.json/?search=' + search.search);
 		}
 	};
 });
