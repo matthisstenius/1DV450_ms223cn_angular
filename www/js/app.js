@@ -31,6 +31,11 @@ config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeP
     controller: 'CreateController'
   });
 
+  $routeProvider.when('/resources/edit/:id', {
+    templateUrl: 'partials/resource/addResource.html',
+    controller: 'CreateController'
+  });
+
   $routeProvider.when('/profile', {
     templateUrl: 'partials/user/profile.html',
     controller: 'UserController'

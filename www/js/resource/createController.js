@@ -2,8 +2,28 @@
 
 var module = angular.module('ToerhApp.controllers');
 
-module.controller('CreateController', function($scope, $rootScope, ResourceService, LicenceService, ResourceTypeService) {
+module.controller('CreateController', function($scope, $rootScope, $routeParams, ResourceService, LicenceService, ResourceTypeService) {
 
+	if ($routeParams.id) {
+		var resource = ResourceService.show($routeParams.id);
+    
+	    resource.success(function(resource) {
+	        $scope.resource = resource.items.data;
+	        $scope.resource.tags = [];
+
+	        angular.forEach(resource.items.tags, function(tag) {
+	            $scope.resource.tags.push(tag.tag);
+	        });
+	    });
+
+	    resource.error(function(err) {
+	        console.log(err);
+	    });
+	}
+	
+	/**
+	 * Get licences
+	 */
 	var licences = LicenceService.all();
 
 	licences.success(function(licences) {
@@ -14,6 +34,9 @@ module.controller('CreateController', function($scope, $rootScope, ResourceServi
 		console.log(err);
 	});
 
+	/**
+	 * Get Resourcetypes
+	 */
 	var resourceTypes = ResourceTypeService.all();
 
 	resourceTypes.success(function(resourceTypes) {
@@ -24,7 +47,7 @@ module.controller('CreateController', function($scope, $rootScope, ResourceServi
 		console.log(err);
 	});
 
-	$scope.create = function() {
+	$scope.save = function() {
 		console.log($scope.resource)
 
 		if (typeof($scope.resource.tags) == 'string') {

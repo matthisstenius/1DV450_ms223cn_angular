@@ -2,12 +2,12 @@
     <div data-ng-if="message" data-alert class="alert-box info radius">
         {{userMessage}}
     </div>
-    
+
     <div class="profile">
         <h1>{{user.firstname}} {{user.surname}}'s profile</h1>
         <p>{{user.email}}</p>
-        <a href="" data-ng-click="removeUser()">Remove Account</a>
-        <a href="" data-ng-href="edit/user/{{user.user_id}}">Edit Account</a>
+        <a href="" class="button" data-ng-click="removeUser()">Remove Account</a>
+        <a href="" class="button" data-ng-href="user/edit/{{user.user_id}}">Edit Account</a>
     </div>
 
     <h2>My Resources</h2>

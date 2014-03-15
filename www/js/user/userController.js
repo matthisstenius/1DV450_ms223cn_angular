@@ -9,7 +9,7 @@ module.controller('UserController', function($scope, $rootScope, UserService, Re
         $scope.user = user.items.data;
         console.log(user);
 
-        userResources();
+        userResources('http://toerh.dev/api/v1/users/' + $scope.user.user_id + '/resources.json');
     });
 
     user.error(function(err) {
@@ -33,16 +33,18 @@ module.controller('UserController', function($scope, $rootScope, UserService, Re
     };
 
     $scope.next = function() {
-        userResources();
+        if ($scope.count === 25) {
+            userResources($scope.nextUrl);
+        }
     };
 
-    function userResources() {
-        var userResources = ResourceService.byUser($scope.user.user_id);
+    function userResources(url) {
+        var userResources = ResourceService.byUser(url);
 
         userResources.success(function(resources) {
             $scope.resources = resources.items;
             $scope.nextUrl = resources.pagination.next_url;
-
+            $scope.count = resources.count;
 
             if ( ! resources.items) {
                 $scope.resourceMessage = "No resources could be found";

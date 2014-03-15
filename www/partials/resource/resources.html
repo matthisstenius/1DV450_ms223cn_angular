@@ -33,8 +33,8 @@
 			<p data-ng-repeat="tag in respurce.data.tags">{{tag.tag}}</p>
 
 			<div data-ng-if="user">
-				<a href="" data-ng-click="removeResource(resource.data.id)">Remove</a>
-				<a href="" data-ng-href="edit/recourse/{{resource.data.id}}">Edit</a>
+				<a href="" class="button" data-ng-click="removeResource(resource.data.id)">Remove</a>
+				<a href="" class="button" data-ng-href="#resources/edit/{{resource.data.id}}">Edit</a>
 			</div>
 		</div>
 	</div>

@@ -8,7 +8,9 @@ module.controller('ResourceController', function($scope, ResourceService) {
 	loadResources('http://toerh.dev/api/v1/resources.json');
 
 	$scope.next = function() {
-		loadResources($scope.nextUrl);
+		if ($scope.count === 25) {
+			loadResources($scope.nextUrl);
+		}
 	};
 
 	$scope.resources = [];
@@ -25,6 +27,7 @@ module.controller('ResourceController', function($scope, ResourceService) {
 				});
 
 				$scope.nextUrl = resources.pagination.next_url;
+				$scope.count = resources.count;
 			}
 
 			else {

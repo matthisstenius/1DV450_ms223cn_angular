@@ -14,14 +14,18 @@ module.factory('ResourceService', function($http, $window) {
 		},
 
 		show: function(id) {
-			return $http.get(baseUri + 'resources/' + id);
+			return $http.get(baseUri + 'resources/' + id + '.json');
 		},
 
-		byUser: function(userID) {
-			return $http.get(baseUri + 'users/' + userID + '/resources.json');
+		byUser: function(url) {
+			return $http.get(url);
 		},
 
 		store: function(resource) {
+			if (resource.id) {
+				return $http.put(baseUri + 'users/' + $window.sessionStorage.userid + '/resources/' + resource.id + '.json', resource);
+			}
+
 			return $http.post(baseUri + 'users/' + $window.sessionStorage.userid + '/resources.json', resource);
 		},
 
