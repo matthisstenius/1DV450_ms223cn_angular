@@ -29,7 +29,12 @@ config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeP
   $routeProvider.when('/resources/add', {
     templateUrl: 'partials/resource/addResource.html',
     controller: 'CreateController'
-  });  
+  });
+
+  $routeProvider.when('/profile', {
+    templateUrl: 'partials/user/profile.html',
+    controller: 'UserController'
+  });
 
   $routeProvider.otherwise({redirectTo: '/view1'});
 

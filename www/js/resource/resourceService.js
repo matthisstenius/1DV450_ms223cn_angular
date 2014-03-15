@@ -17,8 +17,16 @@ module.factory('ResourceService', function($http, $window) {
 			return $http.get(baseUri + 'resources/' + id);
 		},
 
+		byUser: function(userID) {
+			return $http.get(baseUri + 'users/' + userID + '/resources.json');
+		},
+
 		store: function(resource) {
 			return $http.post(baseUri + 'users/' + $window.sessionStorage.userid + '/resources.json', resource);
+		},
+
+		destroy: function(userID, resourceID) {
+			return $http.delete(baseUri + 'users/' + userID + '/resources/' + resourceID + '.json');
 		},
 
 		search: function(search) {

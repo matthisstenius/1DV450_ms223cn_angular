@@ -9,15 +9,17 @@ module.controller('ResourceController', function($scope, ResourceService) {
 
 	$scope.next = function() {
 		loadResources($scope.nextUrl);
-	}
+	};
 
 	$scope.resources = [];
 
 	function loadResources(url) {
 		var resources = ResourceService.all(url);
-
+		$scope.loading = "Loading";
 		resources.success(function(resources) {
 			if (resources.items) {
+				$scope.loading = "";
+
 				angular.forEach(resources.items, function(resource, value) {
 					$scope.resources.push(resource);
 				});
@@ -26,7 +28,7 @@ module.controller('ResourceController', function($scope, ResourceService) {
 			}
 
 			else {
-				$scope.message = "No resources found";
+				$scope.resourceMessage = "No resources found";
 			}
 		});
 

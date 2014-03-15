@@ -1,4 +1,4 @@
-<div class="row" data-ng-init="search = {}">
+<div data-toerh-load-more="next()" class="row" data-ng-init="search = {}">
 	<div class="large-4 columns">
 		<select data-ng-change="search = {}" data-ng-model="searchType" ng-init="searchType = 'data'">
 			<option value="data">Name</option>
@@ -13,20 +13,31 @@
 		<input type="text" data-ng-model="search[searchType]" placeholder="Start typing to filter resources by given type">
 	</div>
 	
-	<p>{{message}}</p>
-	
-	<div class="small-12 medium-6 large-4 columns" data-ng-repeat="resource in resources | filter:search:false">
+	<p>{{resourceMessage}}</p>
+
+	<div class="small-12 medium-6 large-12 columns resource-box" data-ng-repeat="resource in resources | filter:search:false">
 		<div class="resource">
 			<h2>{{resource.data.name}}</h2>
 			<p>Created: {{resource.data.created_at | date:'longDate'}}</p>
-			<p>{{resource.data.url}}</p>
-			<p>Created by: {{resource.user.firstname}} {{resource.user.surname}}</p>
-			<p>{{resource.licence.licence}}</p>
-			<p>{{resource.resource_type.resource_type}}</p>
+			<div class="large-6 columns">
+				<p>Created by: {{resource.user.firstname}} {{resource.user.surname}}</p>
+				<p>URL: <a href="{{resource.data.url}}">{{resource.data.url}}</a></p>	
+			</div>			
+			<div class="large-6 columns">
+				<p>Resourcetype: {{resource.resource_type.resource_type}}</p>	
+				<p>Licence: {{resource.licence.licence}}</p>	
+			</div>
+			
+			<h3>Description</h3>
 			<p>{{resource.data.description}}</p>
 			<p data-ng-repeat="tag in respurce.data.tags">{{tag.tag}}</p>
+
+			<div data-ng-if="user">
+				<a href="" data-ng-click="removeResource(resource.data.id)">Remove</a>
+				<a href="" data-ng-href="edit/recourse/{{resource.data.id}}">Edit</a>
+			</div>
 		</div>
 	</div>
 
-	<a href="" ng-click="next()">Show More</a>
+	<p>{{loading}}</p>
 </div>
