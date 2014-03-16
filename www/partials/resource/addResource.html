@@ -22,17 +22,14 @@
 			</label>
 
 			<label>Licence
-				<select data-ng-model="resource.licence_id">
-					<option value="">-- Choose a licence --</option>
-					<option data-ng-repeat="licence in licences" value="{{licence.data.id}}">{{licence.data.licence_type}}</option>
+				<select data-ng-model="resource.licence_id" data-ng-options="l.data.id as l.data.licence_type for l in licences">
+					<option value="">-- Choose Licence --</option>
 				</select>
 			</label>
 
 			<label>Resourcetype
-				<select data-ng-model="resource.resource_type_id">
-					<option value="">-- Choose a resourcetype --</option>
-					<option data-ng-repeat="resourceType in resourceTypes" 
-					value="{{resourceType.data.id}}">{{resourceType.data.resource_type}}</option>
+				<select data-ng-model="resource.resource_type_id" data-ng-options="r.data.id as r.data.resource_type for r in resourceTypes">
+					<option value="">-- Choose Resourcetype --</option>
 				</select>
 			</label>
 		</div>

@@ -15,7 +15,7 @@ module.controller('AuthController', function($scope, $window, AuthService, $cook
 			$window.sessionStorage.token = authorized.access_token;
 			$window.sessionStorage.userid = authorized.user.user_id;
 
-			$location.url('/resources');
+			$location.url('/profile');
 		});
 
 		auth.error(function(err) {
@@ -31,7 +31,8 @@ module.controller('AuthController', function($scope, $window, AuthService, $cook
 		$location.url('/login');
 	};
 
-	$rootScope.$on('reAuthenticate', function() {
+	$rootScope.$on('reAuthenticate', function(message) {
 		$scope.logout();
+		$scope.message = "The session has expired. Please login again.";
 	});
 });
