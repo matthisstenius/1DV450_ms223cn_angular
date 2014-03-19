@@ -22,6 +22,7 @@ module.factory('ResourceService', function($http, $window) {
 		},
 
 		store: function(resource) {
+			console.log( $http.defaults.headers.common.Authorization);
 			if (resource.id) {
 				return $http.put(baseUri + 'users/' + $window.sessionStorage.userid + '/resources/' + resource.id + '.json', resource);
 			}
