@@ -7,7 +7,7 @@ var module = angular.module('ToerhApp.controllers', []);
 module.controller('ResourceController', function($scope, $filter, ResourceService, Notifications) {
 	$scope.message = Notifications.getNotification();
 
-	loadResources('http://toerh.dev/api/v1/resources.json');
+	loadResources('http://toerh.matthis.se/api/v1/resources.json');
 
 	$scope.next = function() {
 		// Only load next in pagenation if there are more respurces to load, we are not already loading or

@@ -10,7 +10,7 @@ module.controller('UserController', function($scope, $rootScope, $location, Noti
     user.success(function(user) {
         $scope.user = user.items.data;
 
-        userResources('http://toerh.dev/api/v1/users/' + $scope.user.user_id + '/resources.json');
+        userResources('http://toerh.matthis.se/api/v1/users/' + $scope.user.user_id + '/resources.json');
     });
 
     user.error(function(err) {

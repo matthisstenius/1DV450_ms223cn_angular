@@ -58,7 +58,7 @@ config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeP
 
   $locationProvider.html5Mode(false).hashPrefix('');
 
-  $httpProvider.defaults.headers.common['X-Api-Token'] = "a45b346b553c65797f43";
+  $httpProvider.defaults.headers.common['X-Api-Token'] = "30873ace69839a904aea";
 }]).
 run(function(SessionService, ProtectedRoutes, $rootScope, $location) {
   $rootScope.$on('$locationChangeStart', function(event, next, current) {
