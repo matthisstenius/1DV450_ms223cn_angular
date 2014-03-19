@@ -8,13 +8,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
-    <nav class="top-bar" data-top-bar data-option="is_hover: false">
+    <nav data-ng-class="{'show-nav': toggle}" class="top-bar" data-top-bar data-option="is_hover: false">
         <ul class="title-area">
             <li class="name">
                 <h1><a href="/">Toerh</a></h1>
             </li>
-        </ul>
 
+            <li data-ng-click="toggle = !toggle" class="toggle-topbar menu-icon"><a href=""><span></span></a></li>
+        </ul>
+        
         <section class="top-bar-section">
             <ul class="right" data-ng-controller="AuthController">
                 <li data-ng-show="isLoggedIn()"><a href="" data-ng-href="#profile">Profile</a></li>
