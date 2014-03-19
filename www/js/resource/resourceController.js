@@ -4,11 +4,15 @@
 
 var module = angular.module('ToerhApp.controllers', []);
 
-module.controller('ResourceController', function($scope, ResourceService) {
+module.controller('ResourceController', function($scope, $filter, ResourceService, Notifications) {
+	$scope.message = Notifications.getNotification();
+
 	loadResources('http://toerh.dev/api/v1/resources.json');
 
 	$scope.next = function() {
-		if ($scope.count === 25) {
+		// Only load next in pagenation if there are more respurces to load, we are not already loading or
+		// not filtering data
+		if ($scope.count === 25 && !$scope.loading && !$scope.search.hasOwnProperty('data')) {
 			loadResources($scope.nextUrl);
 		}
 	};
@@ -17,11 +21,13 @@ module.controller('ResourceController', function($scope, ResourceService) {
 
 	function loadResources(url) {
 		var resources = ResourceService.all(url);
-		$scope.loading = "Loading";
-		resources.success(function(resources) {
-			if (resources.items) {
-				$scope.loading = "";
+		
+		$scope.loading = true;
 
+		resources.success(function(resources) {
+			$scope.loading = false;
+
+			if (resources.items) {
 				angular.forEach(resources.items, function(resource, value) {
 					$scope.resources.push(resource);
 				});
@@ -31,11 +37,12 @@ module.controller('ResourceController', function($scope, ResourceService) {
 			}
 
 			else {
-				$scope.resourceMessage = "No resources found";
+				$scope.message = "No resources found";
 			}
 		});
 
 		resources.error(function(err) {
+			$scope.loading = false;
 			console.log(err);
 		});
 	}

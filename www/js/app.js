@@ -5,6 +5,7 @@
 angular.module('ToerhApp', [
   'ngRoute',
   'ngCookies',
+  'NotificationProvider',
   'ToerhApp.filters',
   'ToerhApp.services',
   'ToerhApp.directives',
@@ -31,7 +32,7 @@ config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeP
     controller: 'CreateController'
   });
 
-  $routeProvider.when('/resources/edit/:id', {
+  $routeProvider.when('/resources/:id/edit', {
     templateUrl: 'partials/resource/addResource.html',
     controller: 'CreateController'
   });
@@ -39,6 +40,16 @@ config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeP
   $routeProvider.when('/profile', {
     templateUrl: 'partials/user/profile.html',
     controller: 'UserController'
+  });
+
+  $routeProvider.when('/signup', {
+    templateUrl: 'partials/user/create.html',
+    controller: 'SaveUserController'
+  });
+
+  $routeProvider.when('/users/:id/edit', {
+    templateUrl: 'partials/user/create.html',
+    controller: 'SaveUserController'
   });
 
   $routeProvider.otherwise({redirectTo: '/view1'});

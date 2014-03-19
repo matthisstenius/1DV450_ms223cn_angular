@@ -11,7 +11,7 @@ module.directive('toerhLoadMore', function() {
             var scrollable = element[0];
             
             document.addEventListener('scroll', function() {
-                if (window.scrollY > scrollable.offsetHeight - 700) {
+                if (window.scrollY > scrollable.offsetHeight - 750) {
                     scope.$apply(scope.toerhLoadMore());
                 }
             }, false);

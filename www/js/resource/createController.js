@@ -2,7 +2,8 @@
 
 var module = angular.module('ToerhApp.controllers');
 
-module.controller('CreateController', function($scope, $rootScope, $routeParams, $location, ResourceService, LicenceService, ResourceTypeService) {
+module.controller('CreateController', function($scope, $rootScope, $routeParams, $location, Notifications, 
+	ResourceService, LicenceService, ResourceTypeService) {
 	if ($routeParams.id) {
 		var resource = ResourceService.show($routeParams.id);
     
@@ -56,6 +57,7 @@ module.controller('CreateController', function($scope, $rootScope, $routeParams,
 		var store = ResourceService.store($scope.resource);
 
 		store.success(function(resource) {
+			Notifications.setNotification('Resource saved successfully.');
 			$location.url('/profile');
 		});
 

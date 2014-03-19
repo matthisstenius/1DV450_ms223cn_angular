@@ -21,6 +21,7 @@
                 <li><a href="" data-ng-href="#">Resources</a></li>
                 <li data-ng-show="isLoggedIn()"><a href="" data-ng-href="#resources/add">Add Resource</a></li>
                 <li data-ng-hide="isLoggedIn()"><a href="" data-ng-href="#login">Login</a></li>
+                <li data-ng-hide="isLoggedIn()"><a href="" data-ng-href="#signup">Signup</a></li>
                 <li data-ng-show="isLoggedIn()"><a href="" data-ng-click="logout()">Logout</a></li>
             </ul>
             <ul class="right">
@@ -47,6 +48,7 @@
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular/angular-route.js"></script>
     <script src="lib/angular/angular-cookies.js"></script>
+    <script src="js/notificationProvider.js"></script>
     <script src="js/app.js"></script>
     <script src="js/routeConfig.js"></script>
     <script src="js/resource/resourceController.js"></script>
@@ -59,8 +61,10 @@
     <script src="js/resource_type/resourceTypeService.js"></script>
     <script src="js/search/searchController.js"></script>
     <script src="js/user/userController.js"></script>
+    <script src="js/user/saveUserController.js"></script>
     <script src="js/user/userService.js"></script>
-    <script src="js/filters.js"></script>
+    <script src="js/common/filters/excerptFilter.js"></script>
     <script src="js/resource/loadMoreDirective.js"></script>
+    <script src="js/user/validateSameDirective.js"></script>
 </body>
 </html>
