@@ -1,6 +1,6 @@
 var module = angular.module('ToerhApp.directives', []);
 
-module.directive('toerhLoadMore', function() {
+module.directive('toerhLoadMore', function($window) {
     return {
         restrict: 'A',
         scope: {
@@ -11,7 +11,7 @@ module.directive('toerhLoadMore', function() {
             var scrollable = element[0];
             
             document.addEventListener('scroll', function() {
-                if (window.scrollY > scrollable.offsetHeight - 750) {
+                if ($window.scrollY > scrollable.offsetHeight - 750) {
                     scope.$apply(scope.toerhLoadMore());
                 }
             }, false);

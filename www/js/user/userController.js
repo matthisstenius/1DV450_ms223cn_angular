@@ -2,10 +2,10 @@
 
 var module = angular.module('ToerhApp.controllers');
 
-module.controller('UserController', function($scope, $rootScope, $location, Notifications, UserService, SessionService, ResourceService) {
+module.controller('UserController', function($scope, $rootScope, $location, $window, Notifications, UserService, SessionService, ResourceService) {
     $scope.message = Notifications.getNotification();
 
-    var user = UserService.user(window.sessionStorage.userid);
+    var user = UserService.user($window.sessionStorage.userid);
 
     user.success(function(user) {
         $scope.user = user.items.data;
