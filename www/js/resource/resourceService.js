@@ -22,7 +22,7 @@ module.factory('ResourceService', function($http, $window) {
 		},
 
 		store: function(resource) {
-			console.log( $http.defaults.headers.common.Authorization);
+			$http.defaults.headers.common.Authorization = $window.sessionStorage.token;
 			if (resource.id) {
 				return $http.put(baseUri + 'users/' + $window.sessionStorage.userid + '/resources/' + resource.id + '.json', resource);
 			}
@@ -31,6 +31,7 @@ module.factory('ResourceService', function($http, $window) {
 		},
 
 		destroy: function(userID, resourceID) {
+			$http.defaults.headers.common.Authorization = $window.sessionStorage.token;
 			return $http.delete(baseUri + 'users/' + userID + '/resources/' + resourceID + '.json');
 		},
 
